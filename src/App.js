@@ -6,13 +6,32 @@ import {
   RiBookLine,
   RiCoinsLine,
   RiBearSmileLine,
+  RiFeedbackLine,
 } from "react-icons/ri";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAvB979aiTKOhI_ZVwO-Qvt-oSbu7mLxq4",
+  authDomain: "crisis-store.firebaseapp.com",
+  databaseURL: "https://crisis-store.firebaseio.com",
+  storageBucket: "crisis-store.appspot.com",
+});
+
+firebase.auth().signInAnonymously();
 
 function App() {
   const [pageActive, setPageActive] = React.useState("main");
 
   React.useEffect(() => {
-    const pages = ["main", "about", "subscribe-list", "additional-features"];
+    const pages = [
+      "main",
+      "about",
+      "subscribe-list",
+      "additional-features",
+      "feedback",
+    ];
 
     window.addEventListener(
       "scroll",
@@ -67,6 +86,13 @@ function App() {
           onClick={setPageActive}
         >
           <RiBearSmileLine />
+        </MenuButton>
+        <MenuButton
+          pageActive={pageActive}
+          pageName="feedback"
+          onClick={setPageActive}
+        >
+          <RiFeedbackLine />
         </MenuButton>
       </styled.Menu>
 
@@ -141,7 +167,48 @@ function App() {
           </styled.List>
         </div>
       </Page>
+
+      <Page name="feedback" isVisibleBackground>
+        <PageFeedback />
+      </Page>
     </styled.AppContainer>
+  );
+}
+
+function PageFeedback() {
+  const [email, setEmail] = React.useState("");
+  const [text, setText] = React.useState("");
+  const [isPending, setIsPending] = React.useState(false);
+
+  const send = React.useCallback(() => {
+    setIsPending(true);
+    firebase
+      .database()
+      .ref(`/feedback/${email}`)
+      .set({ text })
+      .finally(() => setIsPending(false));
+  }, [email, text]);
+
+  return (
+    <>
+      <h2>Feedback</h2>
+      <br />
+      <div className="form">
+        <input
+          placeholder="e-mail or name"
+          value={email}
+          onChange={(event) => setEmail(event.currentTarget.value)}
+        />
+        <textarea
+          rows={5}
+          value={text}
+          onChange={(event) => setText(event.currentTarget.value)}
+        />
+        <button onClick={send} disabled={isPending}>
+          {isPending ? "Pending..." : "Send"}
+        </button>
+      </div>
+    </>
   );
 }
 
