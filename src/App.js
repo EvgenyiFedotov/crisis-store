@@ -1,10 +1,75 @@
 import React from "react";
 import "./App.css";
 import * as styled from "./app.styled";
+import {
+  RiHome5Line,
+  RiBookLine,
+  RiCoinsLine,
+  RiBearSmileLine,
+} from "react-icons/ri";
 
 function App() {
+  const [pageActive, setPageActive] = React.useState("main");
+
+  React.useEffect(() => {
+    const pages = ["main", "about", "subscribe-list", "additional-features"];
+
+    window.addEventListener(
+      "scroll",
+      debounce(() => {
+        let nextPageName = "main";
+
+        for (let index = 0; index < pages.length; index += 1) {
+          const pageName = pages[index];
+          const selector = `[data-page-name="${pageName}"]`;
+          const pageElement = document.querySelector(selector);
+          const windowHeight = window.screen.height;
+          const windowHeightQueater = windowHeight / 4;
+          const scrollTop = window.scrollY;
+          const pageOffsetTopHalf = pageElement.offsetTop - windowHeightQueater;
+
+          if (scrollTop > pageOffsetTopHalf) {
+            nextPageName = pageName;
+          }
+        }
+        setPageActive(nextPageName);
+      })
+    );
+  }, []);
+
   return (
     <styled.AppContainer>
+      <styled.Menu>
+        <MenuButton
+          pageActive={pageActive}
+          pageName="main"
+          onClick={setPageActive}
+        >
+          <RiHome5Line />
+        </MenuButton>
+        <MenuButton
+          pageActive={pageActive}
+          pageName="about"
+          onClick={setPageActive}
+        >
+          <RiBookLine />
+        </MenuButton>
+        <MenuButton
+          pageActive={pageActive}
+          pageName="subscribe-list"
+          onClick={setPageActive}
+        >
+          <RiCoinsLine />
+        </MenuButton>
+        <MenuButton
+          pageActive={pageActive}
+          pageName="additional-features"
+          onClick={setPageActive}
+        >
+          <RiBearSmileLine />
+        </MenuButton>
+      </styled.Menu>
+
       <Page name="main" isVisibleBackground>
         <div className="app-name__world-1">
           <span className="app-name__world-1__letter-1">C</span>risis
@@ -111,6 +176,44 @@ function SubscribeCard({ header, coin, children }) {
       <styled.CardButton>Subscribe</styled.CardButton>
     </styled.Card>
   );
+}
+
+function MenuButton({ pageActive, pageName, children, onClick }) {
+  const isActive = pageActive === pageName;
+
+  const clicked = React.useCallback(() => {
+    const page = document.querySelector(`[data-page-name=${pageName}]`);
+
+    page.scrollIntoView({ behavior: "smooth" });
+
+    if (onClick) onClick(pageName);
+  }, [pageName, onClick]);
+
+  return (
+    <styled.MenuButton data-active={isActive} onClick={clicked}>
+      {children}
+    </styled.MenuButton>
+  );
+}
+
+function debounce(callback, delay = 200) {
+  let id = null;
+
+  const clear = () => {
+    if (id) {
+      clearTimeout(id);
+      id = null;
+    }
+  };
+
+  return (...args) => {
+    clear();
+
+    id = setTimeout(() => {
+      callback(...args);
+      clear();
+    }, delay);
+  };
 }
 
 export default App;

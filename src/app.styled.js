@@ -289,3 +289,38 @@ export const CardButton = styled.button`
   cursor: pointer;
   font-weight: bold;
 `;
+
+export const Menu = styled.div`
+  position: fixed;
+  bottom: 50px;
+  right: 40px;
+  z-index: 30;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+
+  & > *:not(:last-child) {
+    margin-bottom: 16px;
+  }
+`;
+
+export const MenuButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  margin-right: 24px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: #ffffff15;
+  backdrop-filter: blur(8px);
+  color: #f7faff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &[data-active="true"] {
+    background-color: #00968885;
+  }
+`;
