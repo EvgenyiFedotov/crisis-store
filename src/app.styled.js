@@ -9,9 +9,24 @@ export const AppContainer = styled.div`
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
+export const AppPageContent = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  overflow-y: hidden;
+`;
+
 const buttonCss = css`
   padding: 8px;
-  margin-right: 24px;
   border: none;
   outline: none;
   border-radius: 4px;
@@ -21,7 +36,6 @@ const buttonCss = css`
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #f7faff;
   font-size: 16px;
-  font-weight: bold;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -66,6 +80,7 @@ const pageMain = css`
 
     .sign-in {
       ${buttonCss}
+      margin-right: 24px;
     }
 
     .sign-up {
@@ -96,16 +111,47 @@ const pageMain = css`
       sans-serif;
     font-size: 20px;
   }
+
+  @media (max-width: 736px) {
+    font-size: 140px;
+    line-height: 98px;
+
+    .app-name__world-1 {
+      margin-left: -38px;
+    }
+
+    .app-name__world-2 {
+      margin-left: 21px;
+    }
+
+    .app-name__phrase {
+      font-size: 16px;
+    }
+
+    .top-buttons {
+      visibility: hidden;
+    }
+  }
 `;
 
 const pageAbout = css`
   font-size: 32px;
   color: #f7faff;
+
+  @media (max-width: 736px) {
+    font-size: 20px;
+  }
 `;
 
-const pageSubscribes = css`
+const pageSubscribeList = css`
   background: top center url(${mainBg3}) no-repeat;
   background-attachment: fixed;
+
+  @media (max-width: 736px) {
+    ${AppPageContent} {
+      align-items: flex-start;
+    }
+  }
 `;
 
 const pageAdditionalFeatures = css`
@@ -119,6 +165,10 @@ const pageAdditionalFeatures = css`
       text-align: center;
     }
   }
+
+  @media (max-width: 736px) {
+    font-size: 20px;
+  }
 `;
 
 const pageFeedback = css`
@@ -131,6 +181,9 @@ const pageFeedback = css`
     display: flex;
     flex: none;
     flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 
     & > *:not(:last-child) {
       margin-bottom: 24px;
@@ -150,6 +203,8 @@ const pageFeedback = css`
       padding: 12px;
       min-width: 220px;
       max-width: 600px;
+      width: 600px;
+      max-width: 600px;
       min-height: 43px;
       max-height: 500px;
       color: #f7faff;
@@ -166,7 +221,9 @@ const pageFeedback = css`
     }
 
     textarea {
-      width: 550px;
+      width: 600px;
+      min-width: 600px;
+      max-width: 600px;
       height: 300px;
     }
 
@@ -175,6 +232,19 @@ const pageFeedback = css`
       width: 100%;
       background-color: #00968885;
       padding: 12px;
+      max-width: 600px;
+    }
+  }
+
+  @media (max-width: 736px) {
+    font-size: 20px;
+
+    .form {
+      input,
+      textarea {
+        min-width: auto;
+        max-width: 100%;
+      }
     }
   }
 `;
@@ -196,7 +266,7 @@ export const AppPage = styled.div`
   }
 
   &[data-page-name="subscribe-list"] {
-    ${pageSubscribes}
+    ${pageSubscribeList}
   }
 
   &[data-page-name="additional-features"] {
@@ -219,21 +289,6 @@ export const AppPageBackground = styled.div`
   backdrop-filter: blur(8px);
 `;
 
-export const AppPageContent = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 48px;
-`;
-
 export const List = styled.div`
   display: flex;
   flex-direction: column;
@@ -247,9 +302,10 @@ export const List = styled.div`
 
 export const CardList = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 
   & > * {
     margin-bottom: 24px;
@@ -374,6 +430,10 @@ export const Menu = styled.div`
   & > *:not(:last-child) {
     margin-bottom: 16px;
   }
+
+  @media (max-width: 736px) {
+    visibility: hidden;
+  }
 `;
 
 export const MenuButton = styled.button`
@@ -422,4 +482,69 @@ export const Spin = styled.div`
     border-color: #f7faff transparent #f7faff transparent;
     animation: ${dualRing} 1.2s linear infinite;
   }
+`;
+
+export const MobileMenuButton = styled(MenuButton)`
+  visibility: hidden;
+  position: fixed;
+  z-index: 30;
+  bottom: 20px;
+  right: 0px;
+  background-color: #00968885;
+
+  @media (max-width: 736px) {
+    visibility: visible;
+  }
+`;
+
+export const MobileMenu = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(24px);
+  background-color: #f7faff10;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 24px;
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
+
+  & > *:not(:last-child) {
+    margin-bottom: 24px;
+  }
+`;
+
+export const MobileMenuItem = styled.button`
+  width: 80%;
+  padding: 8px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: #ffffff25;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+`;
+
+export const MobileMenuButtons = styled.div`
+  position: fixed;
+  bottom: 20px;
+  right: 84px;
+  z-index: 20;
+  display: flex;
+
+  & > *:not(:last-child) {
+    margin-right: 24px;
+  }
+`;
+
+export const Button = styled.div`
+  ${buttonCss}
+  background-color: ${({ type }) =>
+    type === "primary" ? "#00968885" : "#ffffff35"}
 `;

@@ -7,6 +7,7 @@ import {
   RiCoinsLine,
   RiBearSmileLine,
   RiFeedbackLine,
+  RiMenuLine,
 } from "react-icons/ri";
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -171,7 +172,36 @@ function App() {
       <Page name="feedback" isVisibleBackground>
         <PageFeedback />
       </Page>
+
+      <MobileMenu />
     </styled.AppContainer>
+  );
+}
+
+function MobileMenu() {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  return (
+    <>
+      <styled.MobileMenuButton onClick={() => setIsVisible((prev) => !prev)}>
+        <RiMenuLine />
+      </styled.MobileMenuButton>
+
+      <styled.MobileMenu isVisible={isVisible}>
+        <h2>Menu</h2>
+        <br />
+        <styled.MobileMenuItem>Home</styled.MobileMenuItem>
+        <styled.MobileMenuItem>How it work?</styled.MobileMenuItem>
+        <styled.MobileMenuItem>Subscription list</styled.MobileMenuItem>
+        <styled.MobileMenuItem>Additional features</styled.MobileMenuItem>
+        <styled.MobileMenuItem>Feedback</styled.MobileMenuItem>
+
+        <styled.MobileMenuButtons>
+          <styled.Button>Sign in</styled.Button>
+          <styled.Button type="primary">Sign up</styled.Button>
+        </styled.MobileMenuButtons>
+      </styled.MobileMenu>
+    </>
   );
 }
 
