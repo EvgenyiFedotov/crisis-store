@@ -173,13 +173,26 @@ function App() {
         <PageFeedback />
       </Page>
 
-      <MobileMenu />
+      <MobileMenu onActive={setPageActive} />
     </styled.AppContainer>
   );
 }
 
-function MobileMenu() {
+function MobileMenu({ onActive }) {
   const [isVisible, setIsVisible] = React.useState(false);
+
+  const clicked = React.useCallback(
+    (event) => {
+      const pageName = event.currentTarget.dataset.pgName;
+      const page = document.querySelector(`[data-page-name=${pageName}]`);
+
+      page.scrollIntoView({ behavior: "smooth" });
+      setIsVisible(false);
+
+      if (onActive) onActive(pageName);
+    },
+    [onActive]
+  );
 
   return (
     <>
@@ -190,11 +203,24 @@ function MobileMenu() {
       <styled.MobileMenu isVisible={isVisible}>
         <h2>Menu</h2>
         <br />
-        <styled.MobileMenuItem>Home</styled.MobileMenuItem>
-        <styled.MobileMenuItem>How it work?</styled.MobileMenuItem>
-        <styled.MobileMenuItem>Subscription list</styled.MobileMenuItem>
-        <styled.MobileMenuItem>Additional features</styled.MobileMenuItem>
-        <styled.MobileMenuItem>Feedback</styled.MobileMenuItem>
+        <styled.MobileMenuItem data-pg-name="main" onClick={clicked}>
+          Home
+        </styled.MobileMenuItem>
+        <styled.MobileMenuItem data-pg-name="about" onClick={clicked}>
+          How it work?
+        </styled.MobileMenuItem>
+        <styled.MobileMenuItem data-pg-name="subscribe-list" onClick={clicked}>
+          Subscription list
+        </styled.MobileMenuItem>
+        <styled.MobileMenuItem
+          data-pg-name="additional-features"
+          onClick={clicked}
+        >
+          Additional features
+        </styled.MobileMenuItem>
+        <styled.MobileMenuItem data-pg-name="feedback" onClick={clicked}>
+          Feedback
+        </styled.MobileMenuItem>
 
         <styled.MobileMenuButtons>
           <styled.Button>Sign in</styled.Button>
