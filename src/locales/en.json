@@ -1,0 +1,62 @@
+{
+  "translation": {
+    "main": {
+      "sign-in": "Sing in",
+      "sign-up": "Sign up",
+      "phase-under-name": "All things for you when crisis time."
+    },
+    "about": {
+      "header": "How it works?",
+      "list-item-0": "1. You subscribing on our service",
+      "list-item-1": "2. We buy things for crisis time",
+      "list-item-2": "3. We store things in our warehouse",
+      "list-item-4": "4. When things need you we will bring to you at a convenient time"
+    },
+    "subscribe-list": {
+      "per-month": "per month",
+      "products": {
+        "masks": "Masks",
+        "gloves": "Gloves",
+        "wet-wipes": "Wet wipes",
+        "sanitizer": "Sanitizer",
+        "watter": "Watter",
+        "canned-goods": "Canned goods",
+        "toilet-paper": "Toilet paper",
+        "buckwheat": "Buckwheat"
+      },
+      "card-0": {
+        "header": "Light"
+      },
+      "card-1": {
+        "header": "Middle"
+      },
+      "card-2": {
+        "header": "High"
+      },
+      "subscribe": "Subscribe",
+      "package": "package",
+      "subscription": "subscription"
+    },
+    "additional-features": {
+      "header": "Additional features",
+      "list-item-0": "1. After the first month of subscription, you can just store things with us (the price of the subscription will decrease)",
+      "list-item-1": "2. When the period of storage of things will end, we will sell them and buy new ones for you"
+    },
+    "feedback": {
+      "header": "Feedback",
+      "email": "e-mail or name",
+      "send": "Send",
+      "pending": "Pending..."
+    },
+    "mobile-menu": {
+      "header": "Menu",
+      "home": "Home",
+      "how-it-work": "How it work?",
+      "subscription-list": "Subscription list",
+      "additional-features": "Additional features",
+      "feedback": "Feedback",
+      "sign-in": "Sing in",
+      "sign-up": "Sign up"
+    }
+  }
+}

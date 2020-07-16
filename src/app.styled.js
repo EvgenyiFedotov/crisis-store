@@ -110,6 +110,7 @@ const pageMain = css`
       Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
       sans-serif;
     font-size: 20px;
+    text-align: center;
   }
 
   @media (max-width: 736px) {
@@ -126,6 +127,7 @@ const pageMain = css`
 
     .app-name__phrase {
       font-size: 16px;
+      line-height: 30px;
     }
 
     .top-buttons {
@@ -340,6 +342,7 @@ export const CardHeader = styled.div`
   font-weight: bold;
   font-size: 32px;
   color: #f7faff;
+  text-transform: uppercase;
 `;
 
 export const CardContent = styled.div`
@@ -384,7 +387,7 @@ export const CardMoney = styled.div`
 `;
 
 export const CardMoneyPer = styled.div`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
   color: #009688;
   margin-top: 24px;
@@ -395,7 +398,7 @@ export const CardProductList = styled.div`
   display: flex;
   flex: none;
   flex-direction: column;
-  font-size: 24px;
+  font-size: 22px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -441,7 +444,6 @@ export const MenuButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 8px;
-  margin-right: 24px;
   border: none;
   outline: none;
   border-radius: 4px;
@@ -489,7 +491,7 @@ export const MobileMenuButton = styled(MenuButton)`
   position: fixed;
   z-index: 30;
   bottom: 20px;
-  right: 0px;
+  right: 40px;
   background-color: #00968885;
 
   @media (max-width: 736px) {
@@ -534,7 +536,7 @@ export const MobileMenuItem = styled.button`
 export const MobileMenuButtons = styled.div`
   position: fixed;
   bottom: 20px;
-  right: 84px;
+  right: 100px;
   z-index: 20;
   display: flex;
 

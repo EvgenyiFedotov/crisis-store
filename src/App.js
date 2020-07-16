@@ -12,6 +12,7 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import i18next from "i18next";
 
 firebase.initializeApp({
   apiKey: "AIzaSyAvB979aiTKOhI_ZVwO-Qvt-oSbu7mLxq4",
@@ -105,66 +106,71 @@ function App() {
           <span className="app-name__world-2__letter-1">s</span>tore
         </div>
         <div className="app-name__phrase">
-          All things for you when crisis time.
+          {i18next.t("main.phase-under-name")}
         </div>
 
         <div className="top-buttons">
-          <button className="sign-in">Sign in</button>
-          <button className="sign-up">Sign up</button>
+          <button className="sign-in">{i18next.t("main.sign-in")}</button>
+          <button className="sign-up">{i18next.t("main.sign-up")}</button>
         </div>
       </Page>
 
       <Page name="about">
-        <h2>How it works?</h2>
+        <h2>{i18next.t("about.header")}</h2>
         <br />
         <styled.List>
-          <div>1. You subscribing on our service</div>
-          <div>2. We buy things for crisis time</div>
-          <div>3. We store things in our warehouse</div>
-          <div>
-            4. When things need you we will bring to you at a convenient time
-          </div>
+          <div>{i18next.t("about.list-item-0")}</div>
+          <div>{i18next.t("about.list-item-1")}</div>
+          <div>{i18next.t("about.list-item-2")}</div>
+          <div>{i18next.t("about.list-item-4")}</div>
         </styled.List>
       </Page>
 
       <Page name="subscribe-list" isVisibleBackground>
         <styled.CardList>
-          <SubscribeCard header="LIGHT" coin="25">
-            <div>Masks</div>
-            <div>Gloves</div>
-            <div>Wet wipes</div>
+          <SubscribeCard
+            header={i18next.t("subscribe-list.card-0.header")}
+            coin="25"
+          >
+            <div>{i18next.t("subscribe-list.products.masks")}</div>
+            <div>{i18next.t("subscribe-list.products.gloves")}</div>
+            <div>{i18next.t("subscribe-list.products.wet-wipes")}</div>
+            <div>{i18next.t("subscribe-list.products.sanitizer")}</div>
           </SubscribeCard>
-          <SubscribeCard header="MIDDLE" coin="35">
-            <div>Masks</div>
-            <div>Gloves</div>
-            <div>Wet wipes</div>
-            <div>Sanitizer</div>
-            <div>Watter</div>
+          <SubscribeCard
+            header={i18next.t("subscribe-list.card-1.header")}
+            coin="35"
+          >
+            <div>
+              {i18next.t("subscribe-list.package")} "
+              {i18next.t("subscribe-list.card-0.header")}"
+            </div>
+            <div>+</div>
+            <div>{i18next.t("subscribe-list.products.watter")}</div>
+            <div>{i18next.t("subscribe-list.products.toilet-paper")}</div>
+            <div>{i18next.t("subscribe-list.products.canned-goods")}</div>
           </SubscribeCard>
-          <SubscribeCard header="HIGH" coin="45">
-            <div>Masks</div>
-            <div>Gloves</div>
-            <div>Wet wipes</div>
-            <div>Sanitizer</div>
-            <div>Watter</div>
-            <div>Canned goods</div>
+          <SubscribeCard
+            header={i18next.t("subscribe-list.card-2.header")}
+            coin="45"
+          >
+            <div>
+              {i18next.t("subscribe-list.package")} "
+              {i18next.t("subscribe-list.card-1.header")}"
+            </div>
+            <div>+</div>
+            <div>{i18next.t("subscribe-list.products.buckwheat")}</div>
           </SubscribeCard>
         </styled.CardList>
       </Page>
 
       <Page name="additional-features">
         <div className="content">
-          <h2>Additional features</h2>
+          <h2>{i18next.t("additional-features.header")}</h2>
           <br />
           <styled.List>
-            <div>
-              1. After the first month of subscription, you can just store
-              things with us (the price of the subscription will decrease)
-            </div>
-            <div>
-              2. When the period of storage of things will end, we will sell
-              them and buy new ones for you
-            </div>
+            <div>{i18next.t("additional-features.list-item-0")}</div>
+            <div>{i18next.t("additional-features.list-item-1")}</div>
           </styled.List>
         </div>
       </Page>
@@ -201,30 +207,32 @@ function MobileMenu({ onActive }) {
       </styled.MobileMenuButton>
 
       <styled.MobileMenu isVisible={isVisible}>
-        <h2>Menu</h2>
+        <h2>{i18next.t("mobile-menu.header")}</h2>
         <br />
         <styled.MobileMenuItem data-pg-name="main" onClick={clicked}>
-          Home
+          {i18next.t("mobile-menu.home")}
         </styled.MobileMenuItem>
         <styled.MobileMenuItem data-pg-name="about" onClick={clicked}>
-          How it work?
+          {i18next.t("mobile-menu.how-it-work")}
         </styled.MobileMenuItem>
         <styled.MobileMenuItem data-pg-name="subscribe-list" onClick={clicked}>
-          Subscription list
+          {i18next.t("mobile-menu.subscription-list")}
         </styled.MobileMenuItem>
         <styled.MobileMenuItem
           data-pg-name="additional-features"
           onClick={clicked}
         >
-          Additional features
+          {i18next.t("mobile-menu.additional-features")}
         </styled.MobileMenuItem>
         <styled.MobileMenuItem data-pg-name="feedback" onClick={clicked}>
-          Feedback
+          {i18next.t("mobile-menu.feedback")}
         </styled.MobileMenuItem>
 
         <styled.MobileMenuButtons>
-          <styled.Button>Sign in</styled.Button>
-          <styled.Button type="primary">Sign up</styled.Button>
+          <styled.Button>{i18next.t("mobile-menu.sign-in")}</styled.Button>
+          <styled.Button type="primary">
+            {i18next.t("mobile-menu.sign-up")}
+          </styled.Button>
         </styled.MobileMenuButtons>
       </styled.MobileMenu>
     </>
@@ -247,11 +255,11 @@ function PageFeedback() {
 
   return (
     <>
-      <h2>Feedback</h2>
+      <h2>{i18next.t("feedback.header")}</h2>
       <br />
       <div className="form">
         <input
-          placeholder="e-mail or name"
+          placeholder={i18next.t("feedback.email")}
           value={email}
           onChange={(event) => setEmail(event.currentTarget.value)}
         />
@@ -261,7 +269,9 @@ function PageFeedback() {
           onChange={(event) => setText(event.currentTarget.value)}
         />
         <button onClick={send} disabled={isPending}>
-          {isPending ? "Pending..." : "Send"}
+          {isPending
+            ? i18next.t("feedback.pending")
+            : i18next.t("feedback.send")}
         </button>
       </div>
     </>
@@ -292,11 +302,15 @@ function SubscribeCard({ header, coin, children }) {
       <styled.CardContent>
         <div>
           <styled.CardMoney>{coin} $</styled.CardMoney>
-          <styled.CardMoneyPer>per month</styled.CardMoneyPer>
+          <styled.CardMoneyPer>
+            {i18next.t("subscribe-list.per-month")}
+          </styled.CardMoneyPer>
         </div>
         <styled.CardProductList>{children}</styled.CardProductList>
       </styled.CardContent>
-      <styled.CardButton>Subscribe</styled.CardButton>
+      <styled.CardButton>
+        {i18next.t("subscribe-list.subscribe")}
+      </styled.CardButton>
     </styled.Card>
   );
 }
