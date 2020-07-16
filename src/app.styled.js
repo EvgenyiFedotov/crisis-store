@@ -500,9 +500,10 @@ export const MobileMenuButton = styled(MenuButton)`
 `;
 
 export const LangButtonWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 70px;
   left: 40px;
+  z-index: 1000;
 
   @media (max-width: 736px) {
     visibility: hidden;
@@ -587,4 +588,37 @@ export const Button = styled.div`
   ${buttonCss}
   background-color: ${({ type }) =>
     type === "primary" ? "#00968885" : "#ffffff35"};
+`;
+
+export const Interview = styled.select`
+  background-color: #f7faff24;
+  backdrop-filter: blur(8px);
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  padding: 12px;
+  min-width: 220px;
+  max-width: 600px;
+  width: 600px;
+  max-width: 600px;
+  min-height: 43px;
+  max-height: 500px;
+  color: #f7faff;
+  appearance: none;
+
+  &::placeholder {
+    color: #f7faff90;
+  }
+
+  &:focus {
+    box-shadow: 0px 2px 8px 0 #14181f80;
+  }
+
+  @media (max-width: 736px) {
+    min-width: auto;
+    max-width: 100%;
+  }
 `;

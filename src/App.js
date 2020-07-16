@@ -69,6 +69,13 @@ function App() {
 
   return (
     <styled.AppContainer>
+      <styled.LangButtonWrapper>
+        <styled.LangButton value={lang} onChange={langChanged}>
+          <option value="ru">Ru</option>
+          <option value="en">En</option>
+        </styled.LangButton>
+      </styled.LangButtonWrapper>
+
       <styled.Menu>
         <MenuButton
           pageActive={pageActive}
@@ -122,13 +129,6 @@ function App() {
           <button className="sign-in">{i18next.t("main.sign-in")}</button>
           <button className="sign-up">{i18next.t("main.sign-up")}</button>
         </div>
-
-        <styled.LangButtonWrapper>
-          <styled.LangButton value={lang} onChange={langChanged}>
-            <option value="ru">Ru</option>
-            <option value="en">En</option>
-          </styled.LangButton>
-        </styled.LangButtonWrapper>
       </Page>
 
       <Page name="about">
@@ -266,6 +266,7 @@ function MobileMenu({ onActive, afterButtons }) {
 
 function PageFeedback() {
   const [email, setEmail] = React.useState("");
+  const [interview, setInterview] = React.useState("i-will-subscribe");
   const [text, setText] = React.useState("");
   const [isPending, setIsPending] = React.useState(false);
 
@@ -274,9 +275,9 @@ function PageFeedback() {
     firebase
       .database()
       .ref(`/feedback/${email}`)
-      .set({ text })
+      .set({ text, interview })
       .finally(() => setIsPending(false));
-  }, [email, text]);
+  }, [email, interview, text]);
 
   return (
     <>
@@ -288,6 +289,20 @@ function PageFeedback() {
           value={email}
           onChange={(event) => setEmail(event.currentTarget.value)}
         />
+        <styled.Interview
+          value={interview}
+          onChange={(event) => setInterview(event.currentTarget.value)}
+        >
+          <option value="i-will-subscribe">
+            {i18next.t("feedback.interview.i-will-subscribe")}
+          </option>
+          <option value="interesting">
+            {i18next.t("feedback.interview.interesting")}
+          </option>
+          <option value="not-good-idea">
+            {i18next.t("feedback.interview.not-good-idea")}
+          </option>
+        </styled.Interview>
         <textarea
           rows={5}
           value={text}

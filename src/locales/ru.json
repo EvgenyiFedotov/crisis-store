@@ -46,7 +46,12 @@
       "header": "Обратная связь",
       "email": "e-mail или имя",
       "send": "Отправить",
-      "pending": "Отправка..."
+      "pending": "Отправка...",
+      "interview": {
+        "i-will-subscribe": "Я бы подписался",
+        "interesting": "Интересная идея",
+        "not-good-idea": "Идея так себе"
+      }
     },
     "mobile-menu": {
       "header": "Меню",

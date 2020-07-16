@@ -46,7 +46,12 @@
       "header": "Feedback",
       "email": "e-mail or name",
       "send": "Send",
-      "pending": "Pending..."
+      "pending": "Pending...",
+      "interview": {
+        "i-will-subscribe": "I will subscribe",
+        "interesting": "It is interesting",
+        "not-good-idea": "It is not good idea"
+      }
     },
     "mobile-menu": {
       "header": "Menu",
