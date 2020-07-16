@@ -13,6 +13,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import i18next from "i18next";
+import { useDetectLang, useLang } from "./lang";
 
 firebase.initializeApp({
   apiKey: "AIzaSyAvB979aiTKOhI_ZVwO-Qvt-oSbu7mLxq4",
@@ -25,6 +26,14 @@ firebase.auth().signInAnonymously();
 
 function App() {
   const [pageActive, setPageActive] = React.useState("main");
+  const lang = useDetectLang();
+
+  const [changeLang] = useLang();
+
+  const langChanged = React.useCallback(
+    (event) => changeLang(event.currentTarget.value),
+    [changeLang]
+  );
 
   React.useEffect(() => {
     const pages = [
@@ -113,6 +122,13 @@ function App() {
           <button className="sign-in">{i18next.t("main.sign-in")}</button>
           <button className="sign-up">{i18next.t("main.sign-up")}</button>
         </div>
+
+        <styled.LangButtonWrapper>
+          <styled.LangButton value={lang} onChange={langChanged}>
+            <option value="ru">Ru</option>
+            <option value="en">En</option>
+          </styled.LangButton>
+        </styled.LangButtonWrapper>
       </Page>
 
       <Page name="about">
@@ -179,12 +195,20 @@ function App() {
         <PageFeedback />
       </Page>
 
-      <MobileMenu onActive={setPageActive} />
+      <MobileMenu
+        onActive={setPageActive}
+        afterButtons={
+          <styled.LangButton value={lang} onChange={langChanged}>
+            <option value="ru">Ru</option>
+            <option value="en">En</option>
+          </styled.LangButton>
+        }
+      />
     </styled.AppContainer>
   );
 }
 
-function MobileMenu({ onActive }) {
+function MobileMenu({ onActive, afterButtons }) {
   const [isVisible, setIsVisible] = React.useState(false);
 
   const clicked = React.useCallback(
@@ -233,6 +257,7 @@ function MobileMenu({ onActive }) {
           <styled.Button type="primary">
             {i18next.t("mobile-menu.sign-up")}
           </styled.Button>
+          {afterButtons}
         </styled.MobileMenuButtons>
       </styled.MobileMenu>
     </>

@@ -499,6 +499,40 @@ export const MobileMenuButton = styled(MenuButton)`
   }
 `;
 
+export const LangButtonWrapper = styled.div`
+  position: absolute;
+  top: 70px;
+  left: 40px;
+
+  @media (max-width: 736px) {
+    visibility: hidden;
+  }
+`;
+
+export const LangButton = styled.select`
+  padding: 6px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: #00968885;
+  backdrop-filter: blur(8px);
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #f7faff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  appearance: none;
+
+  &:focus {
+    box-shadow: 0px 2px 8px 0 #14181f80;
+  }
+`;
+
 export const MobileMenu = styled.div`
   position: fixed;
   top: 0;
@@ -518,6 +552,10 @@ export const MobileMenu = styled.div`
 
   & > *:not(:last-child) {
     margin-bottom: 24px;
+  }
+
+  ${LangButton} {
+    height: 37px;
   }
 `;
 
@@ -548,5 +586,5 @@ export const MobileMenuButtons = styled.div`
 export const Button = styled.div`
   ${buttonCss}
   background-color: ${({ type }) =>
-    type === "primary" ? "#00968885" : "#ffffff35"}
+    type === "primary" ? "#00968885" : "#ffffff35"};
 `;
